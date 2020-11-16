@@ -1,0 +1,16 @@
+---
+- block:
+    - name: install redis-server package
+      apt:
+        name: "redis-server"
+        state: present
+    - name: setup redis-server connection password
+      lineinfile:
+        path: "/etc/redis/redis.conf"
+        regexp: "^# requirepass "
+        line: "requirepass {{ redis_password }}"
+        backup: yes
+      when: redis_password
+      notify: restart redis-server
+  tags:
+    - redis
