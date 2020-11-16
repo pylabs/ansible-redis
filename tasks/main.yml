@@ -8,9 +8,9 @@
       lineinfile:
         path: "/etc/redis/redis.conf"
         regexp: "^# requirepass "
-        line: "requirepass {{ redis_password }}"
+        line: "requirepass {{ redis_pass }}"
         backup: yes
-      when: redis_password
+      when: redis_pass
       notify: restart redis-server
   tags:
     - redis
