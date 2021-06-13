@@ -1,11 +1,11 @@
 ---
 - block:
     - name: install redis-server package
-      apt:
+      ansible.builtin.apt:
         name: "redis-server"
         state: present
     - name: setup redis-server connection password
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: "/etc/redis/redis.conf"
         regexp: "^# requirepass "
         line: "requirepass {{ redis_pass }}"
